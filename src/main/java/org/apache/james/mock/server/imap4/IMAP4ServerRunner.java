@@ -23,6 +23,7 @@ import org.apache.james.imap.encode.ImapResponseComposer;
 import org.apache.james.imap.encode.main.DefaultImapEncoderFactory;
 import org.apache.james.imap.main.DefaultImapDecoderFactory;
 import org.apache.james.imap.processor.main.DefaultImapProcessorFactory;
+import org.apache.james.mock.server.imap4.configuration.IMAP4ServerXMLConfigurationBuilder;
 import org.apache.james.mock.server.pop3.configuration.POP3ServerXMLConfigurationBuilder;
 import org.apache.james.filesystem.api.FileSystem;
 import org.apache.james.imapserver.netty.IMAPServerFactory;
@@ -85,11 +86,11 @@ public class IMAP4ServerRunner {
     }
 
     public IMAP4ServerRunner(int port, UsersWithMessages usersWithMessages) throws Exception {
-        this(POP3ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, getLogger(IMAP4ServerRunner.class));
+        this(IMAP4ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, getLogger(IMAP4ServerRunner.class));
     }
 
     public IMAP4ServerRunner(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
-        this(POP3ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, logger);
+        this(IMAP4ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, logger);
     }
 
     public IMAP4ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages) throws Exception {
