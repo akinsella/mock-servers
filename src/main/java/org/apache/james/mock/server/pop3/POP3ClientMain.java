@@ -38,7 +38,7 @@ public abstract class POP3ClientMain {
                     )
                     .build();
 
-            pop3ServerRunner = pop3ServerRunner.createInstanceAndStart(usersWithMessages);
+            pop3ServerRunner = POP3ServerRunner.createInstanceAndStart(usersWithMessages);
 
             Thread.sleep(60 * 60 * 1000);
         }
