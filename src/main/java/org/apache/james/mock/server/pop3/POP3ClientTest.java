@@ -1,4 +1,4 @@
-package org.helyx.pop3.mock.server;
+package org.apache.james.mock.server.pop3;
 
 import com.sun.mail.pop3.POP3Store;
 import org.apache.james.builder.MimeMessageBuilder;
@@ -7,18 +7,16 @@ import org.apache.james.builder.UsersWithMessages;
 import org.junit.*;
 
 import javax.mail.*;
-import javax.mail.internet.MimeMessage;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
 
 
 /**
  * http://blog.codejava.net/nam/receive-e-mails-via-pop3-using-javamail/
  */
-public abstract class Pop3ClientTest {
+public abstract class POP3ClientTest {
 
-    Pop3ServerRunner pop3ServerRunner;
+    POP3ServerRunner pop3ServerRunner;
 
     @Before
     public void beforeClass() throws Exception {
@@ -45,7 +43,7 @@ public abstract class Pop3ClientTest {
             )
             .build();
 
-        pop3ServerRunner = Pop3ServerRunner.createInstanceAndStart(usersWithMessages);
+        pop3ServerRunner = POP3ServerRunner.createInstanceAndStart(usersWithMessages);
     }
 
     @After

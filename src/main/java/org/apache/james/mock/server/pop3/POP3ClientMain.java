@@ -1,4 +1,4 @@
-package org.helyx.pop3.mock.server;
+package org.apache.james.mock.server.pop3;
 
 import com.google.common.collect.Ranges;
 import org.apache.james.builder.MimeMessageBuilder;
@@ -15,11 +15,11 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * http://blog.codejava.net/nam/receive-e-mails-via-pop3-using-javamail/
  */
-public abstract class Pop3ClientMain {
+public abstract class POP3ClientMain {
 
     public static void main(String[] args) {
 
-        Pop3ServerRunner pop3ServerRunner = null;
+        POP3ServerRunner pop3ServerRunner = null;
         try {
             List<MimeMessageBuilder> mimeMessages = newArrayList();
 
@@ -38,7 +38,7 @@ public abstract class Pop3ClientMain {
                     )
                     .build();
 
-            pop3ServerRunner = Pop3ServerRunner.createInstanceAndStart(usersWithMessages);
+            pop3ServerRunner = pop3ServerRunner.createInstanceAndStart(usersWithMessages);
 
             Thread.sleep(60 * 60 * 1000);
         }

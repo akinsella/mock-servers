@@ -1,4 +1,4 @@
-pop3-mock-server
+mail-mock-server
 ================
 
-Pop3 Mock Server developped for testing purpose
+Mail Mock Server developped for testing purpose

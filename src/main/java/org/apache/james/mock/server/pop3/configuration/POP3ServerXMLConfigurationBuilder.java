@@ -1,4 +1,4 @@
-package org.apache.james.configuration;
+package org.apache.james.mock.server.pop3.configuration;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
@@ -11,7 +11,7 @@ import java.io.StringReader;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
-public class Pop3ServerXMLConfigurationBuilder {
+public class POP3ServerXMLConfigurationBuilder {
 
     public static XMLConfiguration createConfigurationWithPort(int port) throws ConfigurationException {
         Document document = DocumentHelper.createDocument();
