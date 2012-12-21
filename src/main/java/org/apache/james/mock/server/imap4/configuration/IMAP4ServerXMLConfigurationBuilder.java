@@ -66,7 +66,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
         </imapservers>
 */
 
-public class IMAP4ServerXMLConfigurationBuilder {
+public class Imap4ServerXMLConfigurationBuilder {
 
     public static XMLConfiguration createConfigurationWithPort(int port) throws ConfigurationException {
         Document document = DocumentHelper.createDocument();

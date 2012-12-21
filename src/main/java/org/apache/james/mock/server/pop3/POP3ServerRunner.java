@@ -10,7 +10,6 @@ import org.apache.james.InMemoryUsersRepository;
 import org.apache.james.adapter.mailbox.store.UserRepositoryAuthenticator;
 import org.apache.james.builder.UserWithMessages;
 import org.apache.james.builder.UsersWithMessages;
-import org.apache.james.mock.server.pop3.configuration.POP3ServerXMLConfigurationBuilder;
 import org.apache.james.filesystem.api.FileSystem;
 import org.apache.james.mailbox.MailboxListener;
 import org.apache.james.mailbox.MailboxManager;
@@ -26,6 +25,7 @@ import org.apache.james.mailbox.model.UpdatedFlags;
 import org.apache.james.mailbox.store.JVMMailboxPathLocker;
 import org.apache.james.mailbox.store.RandomMailboxSessionIdGenerator;
 import org.apache.james.mailbox.store.StoreMailboxManager;
+import org.apache.james.mock.server.pop3.configuration.Pop3ServerXMLConfigurationBuilder;
 import org.apache.james.pop3server.netty.POP3ServerFactory;
 import org.apache.james.user.api.UsersRepositoryException;
 import org.slf4j.Logger;
@@ -46,43 +46,43 @@ import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class POP3ServerRunner {
+public class Pop3ServerRunner {
 
     private POP3ServerFactory pop3ServerFactory;
 
-    public static POP3ServerRunner createInstanceAndStart( UsersWithMessages usersWithMessages) throws Exception {
-        return new POP3ServerRunner(usersWithMessages);
+    public static Pop3ServerRunner createInstanceAndStart( UsersWithMessages usersWithMessages) throws Exception {
+        return new Pop3ServerRunner(usersWithMessages);
     }
 
-    public static POP3ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages) throws Exception {
-        return new POP3ServerRunner(port, usersWithMessages);
+    public static Pop3ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages) throws Exception {
+        return new Pop3ServerRunner(port, usersWithMessages);
     }
 
-    public static POP3ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
-        return new POP3ServerRunner(port, usersWithMessages, logger);
+    public static Pop3ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+        return new Pop3ServerRunner(port, usersWithMessages, logger);
     }
 
-    public static POP3ServerRunner createInstanceAndStart(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
-        return new POP3ServerRunner(configuration, usersWithMessages, logger);
+    public static Pop3ServerRunner createInstanceAndStart(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+        return new Pop3ServerRunner(configuration, usersWithMessages, logger);
     }
 
-    public POP3ServerRunner(UsersWithMessages usersWithMessages) throws Exception {
+    public Pop3ServerRunner(UsersWithMessages usersWithMessages) throws Exception {
         this(9110, usersWithMessages);
     }
 
-    public POP3ServerRunner(int port, UsersWithMessages usersWithMessages) throws Exception {
-        this(POP3ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, getLogger(POP3ServerRunner.class));
+    public Pop3ServerRunner(int port, UsersWithMessages usersWithMessages) throws Exception {
+        this(Pop3ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, getLogger(Pop3ServerRunner.class));
     }
 
-    public POP3ServerRunner(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
-        this(POP3ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, logger);
+    public Pop3ServerRunner(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+        this(Pop3ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, logger);
     }
 
-    public POP3ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages) throws Exception {
-        this(configuration, usersWithMessages, getLogger(POP3ServerRunner.class));
+    public Pop3ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages) throws Exception {
+        this(configuration, usersWithMessages, getLogger(Pop3ServerRunner.class));
     }
 
-    public POP3ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+    public Pop3ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
         MailboxManager mailboxManager = creatMailBoxManager(usersWithMessages, logger);
         pop3ServerFactory = createPop3ServerFactory(mailboxManager, configuration, logger);
 

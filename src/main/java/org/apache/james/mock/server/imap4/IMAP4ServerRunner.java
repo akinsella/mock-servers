@@ -4,28 +4,15 @@ import com.google.common.base.Joiner;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.io.IOUtils;
 import org.apache.james.BasicFileSystem;
-import org.apache.james.InMemoryProtocolHandlerLoader;
 import org.apache.james.InMemoryUser;
 import org.apache.james.InMemoryUsersRepository;
 import org.apache.james.adapter.mailbox.store.UserRepositoryAuthenticator;
 import org.apache.james.builder.UserWithMessages;
 import org.apache.james.builder.UsersWithMessages;
-import org.apache.james.imap.api.ImapMessage;
-import org.apache.james.imap.api.display.Localizer;
-import org.apache.james.imap.api.process.ImapProcessor;
-import org.apache.james.imap.api.process.ImapSession;
-import org.apache.james.imap.api.process.MailboxTyper;
-import org.apache.james.imap.decode.ImapDecoder;
-import org.apache.james.imap.decode.ImapRequestLineReader;
-import org.apache.james.imap.decode.main.DefaultImapDecoder;
-import org.apache.james.imap.encode.ImapEncoder;
-import org.apache.james.imap.encode.ImapResponseComposer;
+import org.apache.james.filesystem.api.FileSystem;
 import org.apache.james.imap.encode.main.DefaultImapEncoderFactory;
 import org.apache.james.imap.main.DefaultImapDecoderFactory;
 import org.apache.james.imap.processor.main.DefaultImapProcessorFactory;
-import org.apache.james.mock.server.imap4.configuration.IMAP4ServerXMLConfigurationBuilder;
-import org.apache.james.mock.server.pop3.configuration.POP3ServerXMLConfigurationBuilder;
-import org.apache.james.filesystem.api.FileSystem;
 import org.apache.james.imapserver.netty.IMAPServerFactory;
 import org.apache.james.mailbox.MailboxListener;
 import org.apache.james.mailbox.MailboxManager;
@@ -41,7 +28,7 @@ import org.apache.james.mailbox.model.UpdatedFlags;
 import org.apache.james.mailbox.store.JVMMailboxPathLocker;
 import org.apache.james.mailbox.store.RandomMailboxSessionIdGenerator;
 import org.apache.james.mailbox.store.StoreMailboxManager;
-import org.apache.james.pop3server.netty.POP3ServerFactory;
+import org.apache.james.mock.server.imap4.configuration.Imap4ServerXMLConfigurationBuilder;
 import org.apache.james.user.api.UsersRepositoryException;
 import org.slf4j.Logger;
 
@@ -61,43 +48,43 @@ import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class IMAP4ServerRunner {
+public class Imap4ServerRunner {
 
     private IMAPServerFactory imap4ServerFactory;
 
-    public static IMAP4ServerRunner createInstanceAndStart( UsersWithMessages usersWithMessages) throws Exception {
-        return new IMAP4ServerRunner(usersWithMessages);
+    public static Imap4ServerRunner createInstanceAndStart( UsersWithMessages usersWithMessages) throws Exception {
+        return new Imap4ServerRunner(usersWithMessages);
     }
 
-    public static IMAP4ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages) throws Exception {
-        return new IMAP4ServerRunner(port, usersWithMessages);
+    public static Imap4ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages) throws Exception {
+        return new Imap4ServerRunner(port, usersWithMessages);
     }
 
-    public static IMAP4ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
-        return new IMAP4ServerRunner(port, usersWithMessages, logger);
+    public static Imap4ServerRunner createInstanceAndStart(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+        return new Imap4ServerRunner(port, usersWithMessages, logger);
     }
 
-    public static IMAP4ServerRunner createInstanceAndStart(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
-        return new IMAP4ServerRunner(configuration, usersWithMessages, logger);
+    public static Imap4ServerRunner createInstanceAndStart(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+        return new Imap4ServerRunner(configuration, usersWithMessages, logger);
     }
 
-    public IMAP4ServerRunner(UsersWithMessages usersWithMessages) throws Exception {
+    public Imap4ServerRunner(UsersWithMessages usersWithMessages) throws Exception {
         this(9143, usersWithMessages);
     }
 
-    public IMAP4ServerRunner(int port, UsersWithMessages usersWithMessages) throws Exception {
-        this(IMAP4ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, getLogger(IMAP4ServerRunner.class));
+    public Imap4ServerRunner(int port, UsersWithMessages usersWithMessages) throws Exception {
+        this(Imap4ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, getLogger(Imap4ServerRunner.class));
     }
 
-    public IMAP4ServerRunner(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
-        this(IMAP4ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, logger);
+    public Imap4ServerRunner(int port, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+        this(Imap4ServerXMLConfigurationBuilder.createConfigurationWithPort(port), usersWithMessages, logger);
     }
 
-    public IMAP4ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages) throws Exception {
-        this(configuration, usersWithMessages, getLogger(IMAP4ServerRunner.class));
+    public Imap4ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages) throws Exception {
+        this(configuration, usersWithMessages, getLogger(Imap4ServerRunner.class));
     }
 
-    public IMAP4ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
+    public Imap4ServerRunner(HierarchicalConfiguration configuration, UsersWithMessages usersWithMessages, Logger logger) throws Exception {
         MailboxManager mailboxManager = creatMailBoxManager(usersWithMessages, logger);
         imap4ServerFactory = createIMAP4ServerFactory(mailboxManager, configuration, logger);
 

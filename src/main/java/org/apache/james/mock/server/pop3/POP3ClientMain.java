@@ -15,11 +15,11 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * http://blog.codejava.net/nam/receive-e-mails-via-pop3-using-javamail/
  */
-public abstract class POP3ClientMain {
+public abstract class Pop3ClientMain {
 
     public static void main(String[] args) {
 
-        POP3ServerRunner pop3ServerRunner = null;
+        Pop3ServerRunner pop3ServerRunner = null;
         try {
             List<MimeMessageBuilder> mimeMessages = newArrayList();
 
@@ -38,7 +38,7 @@ public abstract class POP3ClientMain {
                     )
                     .build();
 
-            pop3ServerRunner = POP3ServerRunner.createInstanceAndStart(usersWithMessages);
+            pop3ServerRunner = Pop3ServerRunner.createInstanceAndStart(usersWithMessages);
 
             Thread.sleep(60 * 60 * 1000);
         }

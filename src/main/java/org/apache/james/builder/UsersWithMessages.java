@@ -1,11 +1,7 @@
 package org.apache.james.builder;
 
-import com.google.common.collect.*;
-import org.apache.james.InMemoryUser;
-import org.apache.james.mailbox.model.MailboxPath;
+import com.google.common.collect.Sets;
 
-import javax.mail.internet.MimeMessage;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 

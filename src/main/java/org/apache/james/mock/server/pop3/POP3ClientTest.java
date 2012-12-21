@@ -4,9 +4,14 @@ import com.sun.mail.pop3.POP3Store;
 import org.apache.james.builder.MimeMessageBuilder;
 import org.apache.james.builder.UserWithMessages;
 import org.apache.james.builder.UsersWithMessages;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import javax.mail.*;
+import javax.mail.Address;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Session;
 import java.util.Date;
 import java.util.Properties;
 
@@ -14,9 +19,9 @@ import java.util.Properties;
 /**
  * http://blog.codejava.net/nam/receive-e-mails-via-pop3-using-javamail/
  */
-public abstract class POP3ClientTest {
+public abstract class Pop3ClientTest {
 
-    POP3ServerRunner pop3ServerRunner;
+    Pop3ServerRunner pop3ServerRunner;
 
     @Before
     public void beforeClass() throws Exception {
@@ -43,7 +48,7 @@ public abstract class POP3ClientTest {
             )
             .build();
 
-        pop3ServerRunner = POP3ServerRunner.createInstanceAndStart(usersWithMessages);
+        pop3ServerRunner = Pop3ServerRunner.createInstanceAndStart(usersWithMessages);
     }
 
     @After

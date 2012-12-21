@@ -5,12 +5,10 @@ import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import org.apache.james.InMemoryUser;
-import org.apache.james.builder.MimeMessageBuilder;
 import org.apache.james.mailbox.model.MailboxPath;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.asList;

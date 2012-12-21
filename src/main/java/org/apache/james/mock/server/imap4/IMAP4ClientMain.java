@@ -4,7 +4,6 @@ import com.google.common.collect.Ranges;
 import org.apache.james.builder.MimeMessageBuilder;
 import org.apache.james.builder.UserWithMessages;
 import org.apache.james.builder.UsersWithMessages;
-import org.apache.james.mock.server.pop3.POP3ServerRunner;
 
 import java.util.Date;
 import java.util.List;
@@ -16,11 +15,11 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * http://blog.codejava.net/nam/receive-e-mails-via-pop3-using-javamail/
  */
-public abstract class IMAP4ClientMain {
+public abstract class Imap4ClientMain {
 
     public static void main(String[] args) {
 
-        IMAP4ServerRunner imap4ServerRunner = null;
+        Imap4ServerRunner imap4ServerRunner = null;
         try {
             List<MimeMessageBuilder> mimeMessages = newArrayList();
 
@@ -39,7 +38,7 @@ public abstract class IMAP4ClientMain {
                     )
                     .build();
 
-            imap4ServerRunner = IMAP4ServerRunner.createInstanceAndStart(usersWithMessages);
+            imap4ServerRunner = Imap4ServerRunner.createInstanceAndStart(usersWithMessages);
 
             Thread.sleep(60 * 60 * 1000);
         }

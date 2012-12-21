@@ -2,7 +2,6 @@ package org.apache.james.mock.server.pop3.configuration;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
-import org.apache.commons.io.IOUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -11,7 +10,7 @@ import java.io.StringReader;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
-public class POP3ServerXMLConfigurationBuilder {
+public class Pop3ServerXMLConfigurationBuilder {
 
     public static XMLConfiguration createConfigurationWithPort(int port) throws ConfigurationException {
         Document document = DocumentHelper.createDocument();
